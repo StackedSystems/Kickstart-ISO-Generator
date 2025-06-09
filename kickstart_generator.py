@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-#Linux Kickstart ISO Generator - Brian Turney 08-18-2022
+#Linux Kickstart ISO Generator - HGM 2025
 
 # Change the MIRROR_URL and SOURCE_ISO_NAME below. This script will automate the source ISO download, customization, and custom ISO creation
 # You can also download your own ISO into the directory of this script and paste the name of that iso into the SOURCE_ISO_NAME line below without changing the URL
-MIRROR_URL = "https://download.rockylinux.org/pub/rocky/9/isos/x86_64/"
-SOURCE_ISO_NAME = "Rocky-9.0-x86_64-dvd.iso"
+MIRROR_URL = ""
+SOURCE_ISO_NAME = "Rocky-9.5-x86_64-dvd.iso"
 #MIRROR_URL = "http://mirror.stream.centos.org/9-stream/BaseOS/x86_64/iso/"
-#SOURCE_ISO_NAME = "CentOS-Stream-9-latest-x86_64-dvd1.iso"
+#SOURCE_ISO_NAME = "CentOS-Stream-9-latest-x86_64-dvd.iso"
 #MIRROR_URL = "https://developers.redhat.com/content-gateway/file/"
-#SOURCE_ISO_NAME = "rhel-9.0-x86_64-dvd.iso"
+#SOURCE_ISO_NAME = "rhel-9.0-x86_64-dvd.iso"S
 
 # Import the os module
 import os
@@ -136,11 +136,11 @@ if OS_DISTRO == "Fedora":
         cmd = "yum install " + ISOPACKAGE + " -y"
         os.system(cmd)
         print(GREEN + "[ Ok ]" + BLUE + " Creating Kickstart ISO" + WHITE)
-        cmd = "mkisofs -relaxed-filenames -J -R -o " + CWD + KICKSTART_ISO_NAME + SOURCE_ISO_NAME + " -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -V '" + ISO_LABEL + "' -boot-load-size 4 -boot-info-table -eltorito-alt-boot -eltorito-platform efi -b images/efiboot.img -no-emul-boot " + CWD + ISO_SOURCE_EXTRACT
+        cmd = "mkisofs -relaxed-filenames -J -R -o " + CWD + KICKSTART_ISO_NAME + SOURCE_ISO_NAME + " -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -V '" + ISO_LABEL + "' -boot-load-size 4 -boot-info-table -eltorito-alt-boot -eltorito-platform -b images/efiboot.img -no-emul-boot " + CWD + ISO_SOURCE_EXTRACT
         os.system(cmd)
     else:
         print(GREEN + "[ Ok ]" + BLUE + " Creating Kickstart ISO" + WHITE)
-        cmd = "mkisofs -relaxed-filenames -J -R -o " + CWD + KICKSTART_ISO_NAME + SOURCE_ISO_NAME + " -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -V '" + ISO_LABEL + "' -boot-load-size 4 -boot-info-table -eltorito-alt-boot -eltorito-platform efi -b images/efiboot.img -no-emul-boot " + CWD + ISO_SOURCE_EXTRACT
+        cmd = "mkisofs -relaxed-filenames -J -R -o " + CWD + KICKSTART_ISO_NAME + SOURCE_ISO_NAME + " -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -V '" + ISO_LABEL + "' -boot-load-size 4 -boot-info-table -eltorito-alt-boot -eltorito-platform -b images/efiboot.img -no-emul-boot " + CWD + ISO_SOURCE_EXTRACT
         os.system(cmd)
 
 if OS_DISTRO == "Kali":
